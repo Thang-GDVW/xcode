@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            margin-right: 10px;
+            color: #555;
+        }
+
+        input {
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result-box {
+            border: 1px solid #ddd;
+            background-color: #fff;
+            text-align: center;
+            position: relative;
+            max-height: 100px;
+            max-width: 450px;
+            overflow: auto;
+            padding: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        #copy-button {
+            margin-top: 10px;
+            background-color: #337ab7;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #copy-button:hover {
+            background-color: #286090;
+        }
+
+        #random-number-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #random-number-list li {
+            display: inline-block;
+            margin-right: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<div>
+    <label for="start-number">Bắt đầu:</label>
+    <input type="number" id="start-number" min="1" max="100" value="">
+
+    <label for="end-number">Kết thúc:</label>
+    <input type="number" id="end-number" min="1" max="100" value="">
+</div>
+
+<div>
+    <label for="num-results">Số lượng:</label>
+    <input type="number" id="num-results" min="1" max="100" value="">
+</div>
+
+<button onclick="generateRandomNumbers()">Tạo Danh Sách</button>
+<button id="copy-button" onclick="copyToClipboard()">Copy</button>
+
+
+<div id="result-box" class="output-box">
+   
+    <ul id="random-number-list"></ul>
+</div>
+
+
+<script>
+function generateRandomNumbers() {
+    const startNumber = parseInt(document.getElementById("start-number").value, 10);
+    const endNumber = parseInt(document.getElementById("end-number").value, 10);
+    const numResults = parseInt(document.getElementById("num-results").value, 10);
+
+    if (startNumber >= endNumber) {
+        alert("Số bắt đầu phải nhỏ hơn số kết thúc.");
+        return;
+    }
+
+    if (numResults > (endNumber - startNumber + 1)) {
+        alert("Số lượng kết quả muốn ra không được lớn hơn khoảng số từ số bắt đầu đến số kết thúc.");
+        return;
+    }
+
+    const randomNumberList = generateUniqueRandomNumbers(startNumber, endNumber, numResults);
+    const sortedRandomNumberList = randomNumberList.sort((a, b) => a - b);
+
+    const resultListElement = document.getElementById("random-number-list");
+    resultListElement.innerHTML = "";
+
+    sortedRandomNumberList.forEach((number, index) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = index === 0 ? number : `, ${number}`;
+        resultListElement.appendChild(listItem);
+    });
+}
+
+function generateUniqueRandomNumbers(start, end, count) {
+    const uniqueNumbers = new Set();
+
+    while (uniqueNumbers.size < count) {
+        const randomNum = Math.floor(Math.random() * (end - start + 1)) + start;
+        uniqueNumbers.add(randomNum);
+    }
+
+    return Array.from(uniqueNumbers);
+}
+
+function copyToClipboard() {
+    const resultList = document.getElementById("random-number-list");
+    const numbersText = Array.from(resultList.children).map(item => item.textContent).join('');
+
+    const tempInput = document.createElement("textarea");
+    tempInput.value = numbersText;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+
+    alert("Danh sách đã được sao chép vào clipboard!");
+}
+</script>
+
+</body>
+</html>

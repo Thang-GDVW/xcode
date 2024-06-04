@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm Tổ Hợp</title>
+</head>
+<body>
+    <p>Nhập vào dãy số A (cách nhau bởi dấu ,):</p>
+    <input type="text" id="arrayA" placeholder="Nhập dãy số...">
+    <p>Nhập vào số lượng số C trong mỗi hoán vị:</p>
+    <input type="number" id="numberCount" placeholder="Nhập số lượng...">
+    <button onclick="findCombinations()">Tìm Tổ Hợp</button>
+    <button onclick="copyResult()">Sao Chép Kết Quả</button>
+    <p id="result"></p>
+
+    <script>
+        function findCombinations() {
+            var arrayA = document.getElementById("arrayA").value.split(',').map(Number);
+            var numberCount = parseInt(document.getElementById("numberCount").value);
+            var resultElement = document.getElementById("result");
+            var permutations = [];
+
+            // Hàm để tạo tất cả các hoán vị
+            function permute(arr, index, currentCombination) {
+                if (currentCombination.length === numberCount) {
+                    permutations.push(currentCombination.slice());
+                    return;
+                }
+
+                for (var i = 0; i < arr.length; i++) {
+                    permute(arr.slice(0, i).concat(arr.slice(i + 1)), index + 1, currentCombination.concat(arr[i]));
+                }
+            }
+
+            permute(arrayA, 0, []);
+
+            var validPermutations = permutations.map(perm => perm.join(', '));
+
+            if (validPermutations.length > 0) {
+                var resultHtml = "Có " + validPermutations.length + " tổ hợp từ dãy số A, mỗi tổ hợp có " + numberCount + " số:<br>";
+                resultHtml += validPermutations.join("<br>");
+                resultElement.innerHTML = resultHtml;
+            } else {
+                resultElement.innerText = "Không có tổ hợp nào từ dãy số A.";
+            }
+        }
+
+        function copyResult() {
+            var resultText = document.getElementById("result").innerText;
+            var tempInput = document.createElement("textarea");
+            tempInput.value = resultText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Đã sao chép kết quả!");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Number Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    text-align: center;
+    margin-top: 50px;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+  #numInput {
+    width: 50px;
+    padding: 5px;
+  }
+    #numInput2 {
+    width: 50px;
+    padding: 5px;
+  }
+      #numInput3 {
+    width: 50px;
+    padding: 5px;
+  }
+     #numInput4 {
+    width: 50px;
+    padding: 5px;
+  }
+  #generateButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+    #generateButton2 {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+      #generateButton3 {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+  }
+        #generateButton4 {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+  }
+  #generateButton:hover {
+    background-color: #45a049;
+  }
+  .output-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    box-sizing: border-box;
+  }
+  .output-box {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    text-align: center;
+    position: relative;
+    max-height: 100px;
+    overflow: auto;
+  }
+  .copy-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+    top: 0px;
+   position: sticky; /* Make the copy button sticky */
+    bottom: 0; /* Stick it to the bottom */
+  }
+  .copy-button:hover {
+    background-color: #45a049;
+  }
+  @media (min-width: 350px) {
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container"><br>
+      <label for="numInput">0-1-2-3</label>
+    <input type="number" id="numInput" min="1" value="300">
+    <button id="generateButton" onclick="generateRandomNumbers()">Tạo ngay</button>
+    <div class="output-container">
+      <div class="output-box" id="randomNumberBox">
+        <button class="copy-button" onclick="copyNumbers()">Sao chép</button><hr>
+        <div id="randomNumbers"></div>
+      </div>
+      <div class="output-box" id="fixedNumberBox1To9">
+        <button class="copy-button" onclick="copyFixedNumbers1To9()">Sao chép</button><hr>
+        <div id="fixedNumbers1To9">35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container"><br><hr>
+    <!-- Thêm container mới -->
+    <label for="numInput2">4-5-6-7</label>
+    <input type="number" id="numInput2" min="1" value="300">
+    <button id="generateButton2" onclick="generateRandomNumbers2()">Tạo ngay</button>
+    <div class="output-container">
+      <div class="output-box" id="randomNumberBox2">
+        <button class="copy-button" onclick="copyNumbers2()">Sao chép</button><hr>
+        <div id="randomNumbers2"></div>
+      </div>
+      <div class="output-box" id="fixedNumberBox1To9_2">
+        <button class="copy-button" onclick="copyFixedNumbers1To9_2()">Sao chép</button><hr>
+        <div id="fixedNumbers1To9_2">00,01,02, 03 ,04, 05, 06 ,07, 08, 09,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99
+ </div>
+      </div>
+    </div>
+  </div>
+<!--  v3-->
+ <div class="container"><br><hr>
+    <!-- Thêm container mới -->
+    <label for="numInput3">7-8-9-0</label>
+    <input type="number" id="numInput3" min="1" value="300">
+    <button id="generateButton3" onclick="generateRandomNumbers3()">Tạo ngay</button>
+    <div class="output-container">
+      <div class="output-box" id="randomNumberBox3">
+        <button class="copy-button" onclick="copyNumbers3()">Sao chép</button><hr>
+        <div id="randomNumbers3"></div>
+      </div>
+      <div class="output-box" id="fixedNumberBox1To9_3">
+        <button class="copy-button" onclick="copyFixedNumbers1To9_3()">Sao chép</button><hr>
+        <div id="fixedNumbers1To9_3">05, 06 ,07, 08, 09,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69
+ </div>
+      </div>
+    </div>
+  </div>
+  <div class="container"><br><hr>
+    <!-- Thêm container mới -->
+    <label for="numInput4">65s</label>
+    <input type="number" id="numInput4" min="1" value="320">
+    <button id="generateButton4" onclick="generateRandomNumbers4()">Tạo ngay</button>
+    <div class="output-container">
+      <div class="output-box" id="randomNumberBox4">
+        <button class="copy-button" onclick="copyNumbers4()">Sao chép</button><hr>
+        <div id="randomNumbers4"></div>
+      </div>
+      <div class="output-box" id="fixedNumberBox1To9_4">
+        <button class="copy-button" onclick="copyFixedNumbers1To9_4()">Sao chép</button><hr>
+        <div id="fixedNumbers1To9_4">00, 01, 03, 04, 05, 06, 10, 12, 13, 14,
+16, 18, 20, 21, 22, 23, 24, 25, 26, 27,
+29, 32, 33, 36, 37, 38, 39, 40, 41, 44,
+45, 47, 48, 49, 50, 52, 54, 56, 57, 58,
+59, 60, 61, 62, 65, 66, 67, 68, 69, 70,
+71, 73, 75, 76, 77, 78, 79, 80, 84, 85,
+88, 89, 91, 94, 98
+ </div>
+      </div>
+    </div>
+  </div><hr/><hr/><div>&nbsp;</div><div>&nbsp;</div>
+  <script>
+ const numbers = [
+  '000', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012', '013', '014', '015', '016', '017', '018', '019', '020', '021', '022', '023', '024', '025', '026', '027', '028', '029', '100', '101', '102', '103', '104', '105', '106', '107', '108', '109', '110', '111', '112', '113', '114', '115', '116', '117', '118', '119', '120', '121', '122', '123', '124', '125', '126', '127', '128', '129', '200', '201', '202', '203', '204', '205', '206', '207', '208', '209', '210', '211', '212', '213', '214', '215', '216', '217', '218', '219', '220', '221', '222', '223', '224', '225', '226', '227', '228', '229', '300', '301', '302', '303', '304', '305', '306', '307', '308', '309', '310', '311', '312', '313', '314', '315', '316', '317', '318', '319', '320', '321', '322', '323', '324', '325', '326', '327', '328', '329', '400', '401', '402', '403', '404', '405', '406', '407', '408', '409', '410', '411', '412', '413', '414', '415', '416', '417', '418', '419', '420', '421', '422', '423', '424', '425', '426', '427', '428', '429', '500', '501', '502', '503', '504', '505', '506', '507', '508', '509', '510', '511', '512', '513', '514', '515', '516', '517', '518', '519', '520', '521', '522', '523', '524', '525', '526', '527', '528', '529', '600', '601', '602', '603', '604', '605', '606', '607', '608', '609', '610', '611', '612', '613', '614', '615', '616', '617', '618', '619', '620', '621', '622', '623', '624', '625', '626', '627', '628', '629', '700', '701', '702', '703', '704', '705', '706', '707', '708', '709', '710', '711', '712', '713', '714', '715', '716', '717', '718', '719', '720', '721', '722', '723', '724', '725', '726', '727', '728', '729', '800', '801', '802', '803', '804', '805', '806', '807', '808', '809', '810', '811', '812', '813', '814', '815', '816', '817', '818', '819', '820', '821', '822', '823', '824', '825', '826', '827', '828', '829', '900', '901', '902', '903', '904', '905', '906', '907', '908', '909', '910', '911', '912', '913', '914', '915', '916', '917', '918', '919', '920', '921', '922', '923', '924', '925', '926', '927', '928', '929', '030', '031', '130', '131', '230', '231', '330', '331', '430', '431', '530', '531', '630', '631', '730', '731', '830', '831', '930', '931', '032', '033', '034', '132', '133', '134', '232', '233', '234', '332', '333', '334', '432', '433', '434', '532', '533', '534', '632', '633', '634', '732', '733', '734', '832', '833', '834', '932', '933', '934'
+];
+ const numbers2 = [
+ 
+'961', '943','970','945', '950', '969', '949', '962', '941', '955', '942', '956', '964', '940', '966', '947', '958', '951', '974','954', '948','944', '963', '953', '965', '952', '960', '972', '973', '971', '957', '967', '959', '946', '968', '852','869', '857', '845', '855', '873', '853', '840', '863', '843', '844', '862', '868', '864', '850', '861', '859', '847','856', '841', '849', '854', '870', '867', '860', '842', '848', '858', '874', '866', '846', '871', '865', '851', '872','756', '751', '748', '773', '765', '770', '755', '771', '768', '759', '763', '741', '764', '752', '772', '767', '762','742', '769', '760', '757', '758', '774', '745', '754', '749', '740', '744', '761', '743', '766', '746', '750', '747','753 ', '662','657', '670', '656', '674', '664', '672', '669', '644', '659', '668', '665', '653', '667', '641', '650', '642','646', '661', '651', '654', '652', '658', '666', '647', '673', '660', '671', '643', '655', '648', '645', '649', '640','663 ', '563', '555', '544', '548', '541', '552', '564', '570', '559', '569', '540', '542', '554', '543', '568', '572', '561','556', '553', '550', '545', '547', '562', '557', '565', '573', '566', '574', '551', '558', '549', '571', '567', '560','546 ', '471', '444', '472', '466', '468', '450', '456', '462', '467', '459', '442', '464', '455', '443', '451', '446', '473','470', '448', '461', '449', '452', '460', '474', '458', '440', '469', '453', '445', '447', '465', '454', '463', '457','441', '367', '353', '342', '359', '369', '370', '366', '345', '360', '372', '365', '354', '341', '373', '371', '358', '356','348', '357', '355', '346', '351', '344', '352', '363', '350', '362', '349', '343', '368', '374', '340', '347', '364','361 ', '247', '252', '245', '244', '246', '255', '269', '274', '273', '262', '250', '248', '259', '264', '256', '270', '272','257', '253', '254', '268', '265', '266', '249', '241', '251', '243', '240', '261', '271', '242', '260', '258', '267','263', '151', '150', '141', '147', '155', '164', '145', '143', '166', '172', '169', '171', '173', '156', '161', '144', '167','149', '162', '174', '140', '168', '165', '160', '148', '163', '158', '154', '159', '157', '142', '153', '146', '170','152','040', '041', '042', '043', '044', '045', '046', '047', '048', '049', '050', '051', '052', '053', '054', '055', '056','057', '058', '059', '060', '061', '062', '063', '064', '065', '066', '067', '068', '069', '070', '071', '072', '073','074'
+
+]
+ const numbers3 = [
+'994', '974', '993', '986', '976', '973', '981', '971', '991', '982', '989', '977', '975', '972', '983', '985', '978', '980', '987', '992', '979', '970', '988', '984', '990', '879', '882', '873', '884', '881', '880', '871', '878', '887', '889', '892', '894', '872', '883', '876', '870', '890', '886', '877', '888', '893', '874', '885', '891', '875', '782', '788', '774', '775', '773', '792', '789', '787', '794', '776', '779', '783', '786', '780', '777', '771', '793', '791', '784', '781', '790', '778', '785', '770', '772', '675', '689', '687', '680', '677', '684', '676', '673', '679', '678', '690', '686', '683', '691', '672', '694', '685', '681', '688', '671', '693', '692', '674', '682', '670', '589', '581', '587', '594', '592', '586', '574', '580', '578', '572', '570', '576', '577', '588', '584', '571', '590', '591', '579', '593', '573', '582', '585', '575', '583', '494', '485', '481', '473', '479', '487', '486', '491', '482', '478', '472', '476', '470', '484', '477', '492', '471', '483', '475', '489', '490', '474', '488', '480', '493', '377', '374', '391', '389', '371', '390', '370', '382', '381', '394', '378', '383', '376', '373', '388', '384', '379', '393', '372', '387', '386', '375', '380', '385', '392', '290', '285', '280', '278', '288', '273', '294', '291', '287', '286', '276', '289', '281', '284', '283', '277', '279', '274', '293', '270', '271', '282', '292', '275', '272', '179', '183', '188', '178', '192', '187', '186', '180', '175', '176', '174', '171', '194', '170', '172', '190', '191', '181', '177', '184', '182', '185', '193', '173', '189', '070', '071', '072', '073', '074', '075', '076', '077', '078', '079', '080', '081', '082', '083', '084', '085', '086', '087', '088', '089', '090', '091', '092', '093', '094', '095', '096', '097', '098', '099', '195', '196', '197', '198', '199', '295', '296', '297', '298', '299', '395', '396', '397', '398', '399', '495', '496', '497', '498', '499', '595', '596', '597', '598', '599', '695', '696', '697', '698', '699', '795', '796', '797', '798', '799', '895', '896', '897', '898', '899', '995', '996', '997', '998', '999', '000', '001', '002', '003', '004', '100', '101', '102', '103', '104', '200', '201', '202', '203', '204', '300', '301', '302', '303', '304', '400', '401', '402', '403', '404', '500', '501', '502', '503', '504', '600', '601', '602', '603', '604', '700', '701', '702', '703', '704', '800', '801', '802', '803', '804', '900', '901', '902', '903', '904'
+];
+const numbers4 = [
+'002', '102', '202', '302', '402', '502', '602', '702', '802', '902', ' 007', '107', '207', '307', '407', '507', '607', '707', '807', '907', ' 008', '108', '208', '308', '408', '508', '608', '708', '808', '908', ' 009', '109', '209', '309', '409', '509', '609', '709', '809', '909', ' 011', '111', '211', '311', '411', '511', '611', '711', '811', '911', ' 015', '115', '215', '315', '415', '515', '615', '715', '815', '915', ' 017', '117', '217', '317', '417', '517', '617', '717', '817', '917', ' 019', '119', '219', '319', '419', '519', '619', '719', '819', '919', ' 028', '128', '228', '328', '428', '528', '628', '728', '828', '928', ' 030', '130', '230', '330', '430', '530', '630', '730', '830', '930', ' 031', '131', '231', '331', '431', '531', '631', '731', '831', '931', ' 034', '134', '234', '334', '434', '534', '634', '734', '834', '934', ' 035', '135', '235', '335', '435', '535', '635', '735', '835', '935', ' 042', '142', '242', '342', '442', '542', '642', '742', '842', '942', ' 043', '143', '243', '343', '443', '543', '643', '743', '843', '943 ', '046', '146', '246', '346', '446', '546', '646', '746', '846', '946', ' 051', '151', '251', '351', '451', '551', '651', '751', '851', '951', ' 053', '153', '253', '353', '453', '553', '653', '753', '853', '953', ' 055', '155', '255', '355', '455', '555', '655', '755', '855', '955', ' 063', '163', '263', '363', '463', '563', '663', '763', '863', '963', ' 064', '164', '264', '364', '464', '564', '664', '764', '864', '964', ' 072', '172', '272', '372', '472', '572', '672', '772', '872', '972', ' 074', '174', '274', '374', '474', '574', '674', '774', '874', '974', ' 081', '181', '281', '381', '481', '581', '681', '781', '881', '981', ' 082', '182', '282', '382', '482', '582', '682', '782', '882', '982', ' 083', '183', '283', '383', '483', '583', '683', '783', '883', '983 ', '086', '186', '286', '386', '486', '586', '686', '786', '886', '986 ', '087', '187', '287', '387', '487', '587', '687', '787', '887', '987', ' 090', '190', '290', '390', '490', '590', '690', '790', '890', '990', ' 092', '192', '292', '392', '492', '592', '692', '792', '892', '992', ' 093', '193', '293', '393', '493', '593', '693', '793', '893', '993', ' 095', '195', '295', '395', '495', '595', '695', '795', '895', '995', ' 096', '196', '296', '396', '496', '596', '696', '796', '896', '996', ' 097', '197', '297', '397', '497', '597', '697', '797', '897', '997', ' 099', '199', '299', '399', '499', '599', '699', '799', '899', '999'
+];
+
+    function generateRandomNumbers() {
+      const numInput = document.getElementById("numInput");
+      const randomNumbersDiv = document.getElementById("randomNumbers");
+      randomNumbersDiv.innerHTML = "";
+
+      const numToGenerate = parseInt(numInput.value);
+      if (numToGenerate <= 0 || numToGenerate > numbers.length) {
+        randomNumbersDiv.innerHTML = "<strong>Số lượng không hợp lệ!</strong>";
+        return;
+      }
+
+      const randomIndices = [];
+      while (randomIndices.length < numToGenerate) {
+        const randomIndex = Math.floor(Math.random() * numbers.length);
+        if (!randomIndices.includes(randomIndex)) {
+          randomIndices.push(randomIndex);
+        }
+      }
+
+      const selectedNumbers = randomIndices.map(index => numbers[index]);
+      const sortedNumbers = selectedNumbers.sort((a, b) => a.localeCompare(b));
+      randomNumbersDiv.innerHTML = sortedNumbers.join(", ");
+    }
+
+    function copyFixedNumbers1To9() {
+      const fixedNumbers1To9Div = document.getElementById("fixedNumbers1To9");
+      const range = document.createRange();
+      range.selectNode(fixedNumbers1To9Div);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+
+    }
+
+    function copyNumbers() {
+      const randomNumbersDiv = document.getElementById("randomNumbers");
+      const range = document.createRange();
+      range.selectNode(randomNumbersDiv);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+
+    }
+
+    // Hàm cho container thứ 2
+function generateRandomNumbers2() {
+  const numInput = document.getElementById("numInput2");
+  const randomNumbersDiv = document.getElementById("randomNumbers2");
+  randomNumbersDiv.innerHTML = "";
+
+  const numToGenerate = parseInt(numInput.value);
+  if (numToGenerate <= 0 || numToGenerate > numbers2.length) {
+    randomNumbersDiv.innerHTML = "<strong>Số lượng không hợp lệ!</strong>";
+    return;
+  }
+
+  const randomIndices = [];
+  while (randomIndices.length < numToGenerate) {
+    const randomIndex = Math.floor(Math.random() * numbers2.length);
+    if (!randomIndices.includes(randomIndex)) {
+      randomIndices.push(randomIndex);
+    }
+  }
+
+  const selectedNumbers = randomIndices.map(index => numbers2[index]);
+  const sortedNumbers = selectedNumbers.sort((a, b) => a.localeCompare(b));
+  randomNumbersDiv.innerHTML = sortedNumbers.join(", ");
+}
+
+    function copyFixedNumbers1To9_2() {
+      const fixedNumbers1To9Div = document.getElementById("fixedNumbers1To9_2");
+      const range = document.createRange();
+      range.selectNode(fixedNumbers1To9Div);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+ 
+    }
+
+function copyNumbers2() {
+  const randomNumbersDiv = document.getElementById("randomNumbers2");
+  const range = document.createRange();
+  range.selectNode(randomNumbersDiv);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  document.execCommand("copy");
+  window.getSelection().removeAllRanges();
+}
+    // Hàm cho container thứ 3
+function generateRandomNumbers3() {
+  const numInput = document.getElementById("numInput3");
+  const randomNumbersDiv = document.getElementById("randomNumbers3");
+  randomNumbersDiv.innerHTML = "";
+
+  const numToGenerate = parseInt(numInput.value);
+  if (numToGenerate <= 0 || numToGenerate > numbers3.length) {
+    randomNumbersDiv.innerHTML = "<strong>Số lượng không hợp lệ!</strong>";
+    return;
+  }
+
+  const randomIndices = [];
+  while (randomIndices.length < numToGenerate) {
+    const randomIndex = Math.floor(Math.random() * numbers3.length);
+    if (!randomIndices.includes(randomIndex)) {
+      randomIndices.push(randomIndex);
+    }
+  }
+
+  const selectedNumbers = randomIndices.map(index => numbers3[index]);
+  const sortedNumbers = selectedNumbers.sort((a, b) => a.localeCompare(b));
+  randomNumbersDiv.innerHTML = sortedNumbers.join(", ");
+}
+
+    function copyFixedNumbers1To9_3() {
+      const fixedNumbers1To9Div = document.getElementById("fixedNumbers1To9_3");
+      const range = document.createRange();
+      range.selectNode(fixedNumbers1To9Div);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+
+    }
+
+function copyNumbers3() {
+  const randomNumbersDiv = document.getElementById("randomNumbers3");
+  const range = document.createRange();
+  range.selectNode(randomNumbersDiv);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  document.execCommand("copy");
+  window.getSelection().removeAllRanges();
+
+}
+ // Hàm cho container thứ 4
+function generateRandomNumbers4() {
+  const numInput = document.getElementById("numInput4");
+  const randomNumbersDiv = document.getElementById("randomNumbers4");
+  randomNumbersDiv.innerHTML = "";
+
+  const numToGenerate = parseInt(numInput.value);
+  if (numToGenerate <= 0 || numToGenerate > numbers4.length) {
+    randomNumbersDiv.innerHTML = "<strong>Số lượng không hợp lệ!</strong>";
+    return;
+  }
+
+  const randomIndices = [];
+  while (randomIndices.length < numToGenerate) {
+    const randomIndex = Math.floor(Math.random() * numbers4.length);
+    if (!randomIndices.includes(randomIndex)) {
+      randomIndices.push(randomIndex);
+    }
+  }
+
+  const selectedNumbers = randomIndices.map(index => numbers4[index]);
+  const sortedNumbers = selectedNumbers.sort((a, b) => a.localeCompare(b));
+  randomNumbersDiv.innerHTML = sortedNumbers.join(", ");
+}
+
+    function copyFixedNumbers1To9_4() {
+      const fixedNumbers1To9Div = document.getElementById("fixedNumbers1To9_4");
+      const range = document.createRange();
+      range.selectNode(fixedNumbers1To9Div);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+
+    }
+
+function copyNumbers4() {
+  const randomNumbersDiv = document.getElementById("randomNumbers4");
+  const range = document.createRange();
+  range.selectNode(randomNumbersDiv);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  document.execCommand("copy");
+  window.getSelection().removeAllRanges();
+
+}
+  </script>
+</body>
+</html>

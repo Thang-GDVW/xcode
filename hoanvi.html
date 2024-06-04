@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm Tổ Hợp</title>
+</head>
+<body>
+    <p>Nhập vào tổng A:</p>
+    <input type="number" id="targetSum" placeholder="Nhập tổng...">
+    <p>Nhập vào số lượng số B trong mỗi hoán vị:</p>
+    <input type="number" id="numberCount" placeholder="Nhập số lượng...">
+    <p>Nhập vào các số loại trừ C (cách nhau bởi dấu ,):</p>
+    <input type="text" id="excludedNumbers" placeholder="Nhập các số loại trừ...">
+    <button onclick="findPermutations()">Tìm Tổ Hợp</button>
+    <button onclick="copyResult()">Sao Chép Kết Quả</button>
+    <p id="result"></p>
+
+    <script>
+        function findPermutations() {
+            var targetSum = parseInt(document.getElementById("targetSum").value);
+            var numberCount = parseInt(document.getElementById("numberCount").value);
+            var excludedNumbersInput = document.getElementById("excludedNumbers").value;
+            var excludedNumbers = excludedNumbersInput ? excludedNumbersInput.split(',').map(Number) : [];
+            var resultElement = document.getElementById("result");
+            var permutations = [];
+
+            // Hàm để kiểm tra xem số có phải là số loại trừ hay không
+            function isExcluded(number) {
+                return excludedNumbers.includes(number);
+            }
+
+            // Hàm để tạo tất cả các hoán vị
+            function permute(arr, index, currentSum, currentCombination) {
+                if (currentCombination.length === numberCount) {
+                    if (currentSum === targetSum) {
+                        permutations.push(currentCombination.slice());
+                    }
+                    return;
+                }
+
+                for (var i = 0; i <= 9; i++) {
+                    if (!isExcluded(i)) {
+                        permute(arr, index + 1, currentSum + i, currentCombination.concat(i));
+                    }
+                }
+            }
+
+            permute([], 0, 0, []);
+
+            var validPermutations = permutations.map(perm => perm.join(''));
+
+            if (validPermutations.length > 0) {
+                var resultHtml = "Có " + validPermutations.length + " cách để tạo ra tổng " + targetSum + " từ các số từ 0 đến 9, loại trừ " + excludedNumbers.join(", ") + ", với số lượng số là " + numberCount + ":<br>";
+                resultHtml += validPermutations.join(", ");
+                resultElement.innerHTML = resultHtml;
+            } else {
+                resultElement.innerText = "Không có cách nào để tạo ra tổng " + targetSum + " từ các số từ 0 đến 9, loại trừ " + excludedNumbers.join(", ") + ", với số lượng số là " + numberCount + ".";
+            }
+        }
+
+        function copyResult() {
+            var resultText = document.getElementById("result").innerText;
+            var tempInput = document.createElement("textarea");
+            tempInput.value = resultText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Đã sao chép kết quả!");
+        }
+    </script>
+</body>
+</html>

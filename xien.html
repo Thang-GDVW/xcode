@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        #resultBox {
+            width: 400px;
+            height: 150px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow: auto;
+            margin-bottom: 10px;
+        }
+
+        #copyButton {
+            padding: 5px 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #resultCount {
+            margin-top: 10px;
+        }
+
+        #inputs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        #generateButton {
+            padding: 5px 10px;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+    <title>Tổ hợp chập K của N phần tử</title>
+</head>
+<body>
+    <div id="inputs">
+        <label for="arrayN">Nhập dãy N:</label>
+        <input type="text" id="arrayN" placeholder="VD: 01 02 03">
+
+        <label for="numCombination">Nhập K:</label>
+        <input type="number" id="numCombination" value="2" min="2" max="10">
+
+        <button id="generateButton">Tạo kết quả</button>
+    </div>
+
+    <div id="resultBox"></div>
+    <button id="copyButton">Copy</button>
+    <p id="resultCount"></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var resultBox = document.getElementById("resultBox");
+            var copyButton = document.getElementById("copyButton");
+            var resultCountElement = document.getElementById("resultCount");
+            var generateButton = document.getElementById("generateButton");
+
+            function combinations(arr, k) {
+                var result = [];
+
+                function combine(current, start) {
+                    if (current.length === k) {
+                        result.push(current.slice());
+                        return;
+                    }
+
+                    for (var i = start; i < arr.length; i++) {
+                        current.push(arr[i]);
+                        combine(current, i + 1);
+                        current.pop();
+                    }
+                }
+
+                combine([], 0);
+                return result;
+            }
+
+            function updateResults() {
+                var arrayN = document.getElementById("arrayN").value.replace(/,/g, ' ').split(/\s+/).filter(Boolean);
+                var numCombination = parseInt(document.getElementById("numCombination").value, 10);
+
+                var resultString = "";
+
+                var allCombinations = combinations(arrayN, numCombination);
+                for (var i = 0; i < allCombinations.length; i++) {
+                    resultString += allCombinations[i].join(" ") + ",\n";
+                }
+
+                resultBox.textContent = resultString.trim();
+                resultCountElement.textContent = "Tổng số kết quả: " + allCombinations.length;
+            }
+
+            function copyToClipboard(text) {
+                var dummy = document.createElement("textarea");
+                document.body.appendChild(dummy);
+                dummy.value = text;
+                dummy.select();
+                document.execCommand("copy");
+                document.body.removeChild(dummy);
+            }
+
+            copyButton.addEventListener("click", function() {
+                copyToClipboard(resultBox.textContent);
+            });
+
+            generateButton.addEventListener("click", function() {
+                updateResults();
+            });
+
+            // Mặc định hiển thị kết quả
+            updateResults();
+        });
+    </script>
+</body>
+</html>
